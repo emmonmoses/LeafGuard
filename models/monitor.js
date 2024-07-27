@@ -11,7 +11,7 @@ const treeSchema = new mongoose.Schema({
   },
 });
 
-const monitoringSchema = new mongoose.Schema({
+const monitorSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -33,6 +33,6 @@ const monitoringSchema = new mongoose.Schema({
   timestamps: true, // Automatically adds createdAt and updatedAt
 });
 
-const Monitoring = mongoose.model('Monitoring', monitoringSchema);
+const Monitoring = mongoose.model('Monitor', monitorSchema);
 
 module.exports = Monitoring;

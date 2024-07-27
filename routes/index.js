@@ -12,17 +12,17 @@ const monitoringScheduleRouter = require("./version1/monitoringSchedule");
 const plantingScheduleRouter = require("./version1/plantingSchedule"); 
 const statusRouter = require("./version1/status"); 
 const treeTypeRouter = require("./version1/treeTypes");
-const monitoringRouter = require("./version1/Monitoring"); // Import the new router for monitoring
+const monitorRouter = require("./version1/monitor");
 
 router.use(`/v${version}/roles`, roleRouter);
 router.use(`/v${version}/permissions`, permissionRouter);
 router.use(`/v${version}/treereceptions`, treeReceptionRouter);
-router.use(`/v${version}/individual`, individualRouter);
+router.use(`/v${version}/individuals`, individualRouter);
 router.use(`/v${version}/organisations`, organisationRouter);
-router.use(`/v${version}/monitoringSchedules`, monitoringScheduleRouter);
-router.use(`/v${version}/plantingSchedules`, plantingScheduleRouter);
+router.use(`/v${version}/monitoringschedules`, monitoringScheduleRouter);
+router.use(`/v${version}/plantingschedules`, plantingScheduleRouter);
 router.use(`/v${version}/status`, statusRouter);
-router.use(`/v${version}/treeTypes`, treeTypeRouter);
-router.use(`/v${version}/monitoring`, monitoringRouter); // Add the new router for monitoring
+router.use(`/v${version}/treetypes`, treeTypeRouter);
+router.use(`/v${version}/monitors`, monitorRouter);
 
 module.exports = router;

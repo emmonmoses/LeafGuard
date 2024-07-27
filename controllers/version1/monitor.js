@@ -1,5 +1,5 @@
-const Monitoring = require("../../models/Monitoring");
-const { monitoringValidation } = require("../../validations/Monitoring");
+const Monitor = require("../../models/monitor");
+const { monitoringValidation } = require("../../validations/monitor");
 const Response = require("../../utilities/response_utility");
 const dateUtility = require("../../utilities/date_utility");
 const ResponseMessage = require("../../utilities/messages_utility");
@@ -23,7 +23,7 @@ module.exports = {
       }
 
       // Check if an existing record matches the query conditions
-      let existingMonitoring = await Monitoring.findOne({
+      let existingMonitoring = await Monitor.findOne({
         name: monitoringData.name,
         kabale: monitoringData.kabale,
         houseNumber: monitoringData.houseNumber,
@@ -32,7 +32,7 @@ module.exports = {
 
       if (existingMonitoring) {
         // Create a new record instead of updating the existing one
-        const newMonitoring = new Monitoring({
+        const newMonitoring = new Monitor({
           ...monitoringData,
           createdAt: dateUtility.currentDate(),
         });
@@ -43,7 +43,7 @@ module.exports = {
         await createActivityLog(moduleName, action, person);
         return Response.successResponse(res, 201, savedMonitoring);
       } else {
-        const newMonitoring = new Monitoring({
+        const newMonitoring = new Monitor({
           ...monitoringData,
           createdAt: dateUtility.currentDate(),
         });
@@ -61,7 +61,7 @@ module.exports = {
 
   getAllMonitorings: async (req, res) => {
     try {
-      const totalMonitorings = await Monitoring.countDocuments();
+      const totalMonitorings = await Monitor.countDocuments();
       const { pagination, skip } = await PaginationUtility.paginationParams(
         req,
         totalMonitorings
@@ -71,7 +71,7 @@ module.exports = {
         return Response.customResponse(res, 200, ResponseMessage.OUTOF_DATA);
       }
 
-      pagination.data = await Monitoring.find()
+      pagination.data = await Monitor.find()
         .sort({ _id: -1 })
         .skip(skip)
         .limit(pagination.pageSize);
@@ -93,7 +93,7 @@ module.exports = {
   getMonitoringById: async (req, res) => {
     try {
       const monitoringId = req.params.id;
-      const monitoringData = await Monitoring.findById(monitoringId);
+      const monitoringData = await Monitor.findById(monitoringId);
 
       if (!monitoringData) {
         return Response.customResponse(res, 404, ResponseMessage.NO_DATA);
@@ -119,7 +119,7 @@ module.exports = {
         );
       }
 
-      const updatedMonitoring = await Monitoring.findByIdAndUpdate(
+      const updatedMonitoring = await Monitor.findByIdAndUpdate(
         monitoringId,
         {
           ...monitoringData,
@@ -145,7 +145,7 @@ module.exports = {
   delete: async (req, res) => {
     try {
       const monitoringId = req.params.id;
-      const deletedMonitoring = await Monitoring.findByIdAndDelete(
+      const deletedMonitoring = await Monitor.findByIdAndDelete(
         monitoringId
       );
 

@@ -5,7 +5,7 @@ const treeSchema = Joi.object({
   status: Joi.string().required(),
 });
 
-const monitoringValidation = (data) => {
+const monitorValidation = (data) => {
   const schema = Joi.object({
     name: Joi.string().required(),
     kabale: Joi.string().required(),
@@ -17,4 +17,4 @@ const monitoringValidation = (data) => {
   return schema.validate(data);
 };
 
-module.exports = { monitoringValidation };
+module.exports = { monitorValidation };

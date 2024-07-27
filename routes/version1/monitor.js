@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const monitoringController = require("../../controllers/version1/Monitoring");
+const monitoringController = require("../../controllers/version1/monitor");
 
 router.post("/", monitoringController.createOrUpdate);
 router.get("/", monitoringController.getAllMonitorings);
