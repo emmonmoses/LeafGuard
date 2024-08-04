@@ -13,6 +13,11 @@ const adminValidation = (data) => {
         "Password must be atleast six characters long, must contain an uppercase and lowercase letter, a number and a special character"
       )
       .required(),
+    // phone: Joi.object({
+    //   code: Joi.string(),
+    //   number: Joi.number(),
+    // }),
+    avatar: Joi.string(),
     status: Joi.bool(),
     roleId: Joi.string().allow(""),
     actionBy: Joi.string().allow(""),
